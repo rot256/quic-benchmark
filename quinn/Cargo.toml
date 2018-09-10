@@ -1,0 +1,29 @@
+[package]
+name = "quinn-benchmark"
+version = "0.1.0"
+authors = ["Mathias Hall-Andersen <mathias@hall-andersen.dk>"]
+
+[dependencies]
+env_logger = "0.5"
+webpki = "0.18.0-alpha"
+webpki-roots = "0.15"
+futures = "0.1"
+tokio = "0.1"
+
+[dependencies.quinn]
+# git = "https://github.com/djc/quinn"
+path = "/home/rot256/src/quinn"
+
+[dependencies.rustls]
+# git = "https://github.com/rot256/rustls"
+features = ["quic"]
+# branch = "master"
+path = "/home/rot256/src/rustls"
+
+[[bin]]
+name = "client"
+path = "src/client.rs"
+
+[[bin]]
+name = "server"
+path = "src/server.rs"

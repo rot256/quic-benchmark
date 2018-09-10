@@ -1,0 +1,25 @@
+[package]
+name = "ninn-benchmark"
+version = "0.1.0"
+authors = ["Mathias Hall-Andersen <mathias@hall-andersen.dk>"]
+
+[dependencies]
+futures = "0.1"
+tokio = "0.1"
+tokio-timer = "0.2.4"
+untrusted = "0.6"
+env_logger = "0.5"
+hex = "0.3.2"
+
+[dependencies.ninn]
+git = "https://github.com/rot256/ninn"
+branch = "handshake"
+
+[[bin]]
+name = "client"
+path = "src/client.rs"
+
+[[bin]]
+name = "server"
+path = "src/server.rs"
+
