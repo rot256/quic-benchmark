@@ -20,14 +20,22 @@ fn main() {
     ];
 
     let key = {
-        let f = File::open("server.key").expect("cannot open 'server.key'");
+        let f = File::open("server.rsa").expect("cannot open 'server.key'");
         let mut reader = BufReader::new(f);
         pemfile::rsa_private_keys(&mut reader).expect("cannot read private keys")
     };
 
+    assert!(key.len() > 0);
+
+    let mut certs = {
+        let f = File::open("server.chain").expect("cannot open 'server.crt'");
+        let mut reader = BufReader::new(f);
+        pemfile::certs(&mut reader).expect("cannot read certificates")
+    };
+
     let tls_config = quinn::tls::build_server_config_psk(
+        certs,
         key[0].clone(),
-        psk
     ).unwrap();
 
     env_logger::init();
