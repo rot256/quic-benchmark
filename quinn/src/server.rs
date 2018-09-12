@@ -33,7 +33,7 @@ fn main() {
         pemfile::certs(&mut reader).expect("cannot read certificates")
     };
 
-    let tls_config = quinn::tls::build_server_config_psk(
+    let tls_config = quinn::tls::build_server_config(
         certs,
         key[0].clone(),
     ).unwrap();
