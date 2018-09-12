@@ -11,14 +11,14 @@ futures = "0.1"
 tokio = "0.1"
 
 [dependencies.quinn]
-# git = "https://github.com/djc/quinn"
-path = "/home/rot256/src/quinn"
+git = "https://github.com/rot256/quinn"
+# path = "/home/rot256/src/quinn"
 
 [dependencies.rustls]
-# git = "https://github.com/rot256/rustls"
+git = "https://github.com/rot256/rustls"
 features = ["quic", "dangerous_configuration"]
-# branch = "master"
-path = "/home/rot256/src/rustls"
+branch = "master"
+# path = "/home/rot256/src/rustls"
 
 [[bin]]
 name = "client"
