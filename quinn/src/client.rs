@@ -4,8 +4,12 @@ extern crate quinn;
 use futures::Future;
 use std::env;
 
+use std::time::Duration;
+use std::thread;
+
+
 // const ITERATIONS : usize = 100000;
-const ITERATIONS : usize = 10000;
+const ITERATIONS : usize = 2;
 
 fn main() {
 
@@ -18,14 +22,13 @@ fn main() {
 
         println!("{}", i);
 
-        let res = quinn::Client::connect_with_tls_config(&server, 4433, config.clone())
+        let res = quinn::Client::connect_with_tls_config(&server, 4433, &config)
             .unwrap()
-            .and_then(|_| {
+            .and_then(|conn| {
                 println!("client is connected");
                 futures::future::ok(())
             })
             .wait();
-
 
         i += match res {
             Ok(_)   => 1,
